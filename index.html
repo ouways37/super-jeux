@@ -2,14 +2,114 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Super Jeu</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif;
+      background: url('plage.jpg') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+      padding: 20px;
+      color: #222;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #fff;
+      text-shadow: 2px 2px 4px #000;
+      margin-bottom: 30px;
+    }
+
+    button {
+      background-color: #ffea00;
+      color: #000;
+      font-weight: bold;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .mode-select,
+    .choice-select,
+    #difficulty-select,
+    .scoreboard {
+      margin-bottom: 20px;
+    }
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 10px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      font-size: 2em;
+      font-weight: bold;
+      line-height: 100px;
+    }
+
+    #message {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+      margin: 20px 0;
+    }
+  </style>
 </head>
 <body>
-  <h1>Bienvenue sur mon Super Jeu de Tic-Tac-Toe !</h1>
-  <div id="game"></div>
-  <button id="start">Jouer</button>
+  <h1>Super Jeu – Tic Tac Toe</h1>
+
+  <div class="mode-select">
+    <button onclick="startGame('pvp')">1V1 Local</button>
+    <button onclick="startGame('ia')">Joueur vs IA</button>
+  </div>
+
+  <div class="choice-select">
+    <label>Choisissez votre symbole :</label><br/>
+    <button onclick="setPlayer('X')">X</button>
+    <button onclick="setPlayer('O')">O</button>
+  </div>
+
+  <div id="difficulty-select">
+    <label>Difficulté :</label><br/>
+    <button onclick="setDifficulty('easy')">Facile</button>
+    <button onclick="setDifficulty('hard')">Difficile</button>
+  </div>
+
+  <div id="game">
+    <div id="board"></div>
+    <p id="message"></p>
+    <button onclick="resetGame()">Rejouer</button>
+  </div>
+
+  <div class="scoreboard">
+    <p>Joueur : <span id="score-player">0</span></p>
+    <p>IA : <span id="score-ia">0</span></p>
+    <p>Égalités : <span id="score-draw">0</span></p>
+    <button onclick="resetScores()">Réinitialiser les scores</button>
+  </div>
+
+  <audio id="winSound" src="win.mp3" preload="auto"></audio>
+  <audio id="bgMusic" src="music.mp3" loop autoplay></audio>
+  <button onclick="toggleMusic()">🔇 / 🔊</button>
+
   <script src="script.js"></script>
 </body>
 </html>
