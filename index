@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Jeu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Super Jeu – Tic Tac Toe</h1>
+
+  <div class="mode-select">
+    <button onclick="startGame('pvp')">1V1 Local</button>
+    <button onclick="startGame('ia')">Joueur vs IA</button>
+  </div>
+
+  <div class="choice-select">
+    <label>Choisissez votre symbole :</label><br/>
+    <button onclick="setPlayer('X')">X</button>
+    <button onclick="setPlayer('O')">O</button>
+  </div>
+
+  <div id="difficulty-select">
+    <label>Difficulté :</label><br/>
+    <button onclick="setDifficulty('easy')">Facile</button>
+    <button onclick="setDifficulty('hard')">Difficile</button>
+  </div>
+
+  <div id="game">
+    <div id="board"></div>
+    <p id="message"></p>
+    <button onclick="resetGame()">Rejouer</button>
+  </div>
+
+  <div class="scoreboard">
+    <p>Joueur : <span id="score-player">0</span></p>
+    <p>IA : <span id="score-ia">0</span></p>
+    <p>Égalités : <span id="score-draw">0</span></p>
+    <button onclick="resetScores()">Réinitialiser les scores</button>
+  </div>
+
+  <audio id="winSound" src="win.mp3" preload="auto"></audio>
+  <audio id="bgMusic" src="music.mp3" loop autoplay></audio>
+  <button onclick="toggleMusic()">🔇 / 🔊</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
